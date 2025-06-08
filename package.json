@@ -2,7 +2,6 @@
   "name": "dompetku-admin",
   "version": "1.0.0",
   "private": true,
-  "description": "Admin panel untuk aplikasi Dompetku",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -13,9 +12,7 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "vite": "^4.3.9",
-    "tailwindcss": "^3.3.2",
-    "postcss": "^8.4.21",
-    "autoprefixer": "^10.4.14"
+    "vite": "^5.2.0",
+    "@vitejs/plugin-react": "^4.2.1"
   }
 }
