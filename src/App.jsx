@@ -1,6 +1,6 @@
 import React, { useState } from "react";
+import ReactDOM from "react-dom/client";
 
-// Pages & Components
 const Dashboard = () => (
   <div className="p-6">
     <h1 className="text-2xl font-bold">Dashboard</h1>
@@ -22,106 +22,96 @@ const Transactions = () => (
   </div>
 );
 
-const Login = ({ onLogin }) => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+const TopUpGame = () => (
+  <div className="p-6">
+    <h1 className="text-2xl font-bold">Top Up Game</h1>
+    <p>Fitur top up game akan ditampilkan di sini.</p>
+  </div>
+);
 
-  const handleLogin = () => {
-    if (email === "bayychannel01@gmail.com" && password === "admin123") {
-      onLogin(true);
-    } else {
-      alert("Login gagal. Email atau password salah.");
-    }
-  };
+const Voucher = () => (
+  <div className="p-6">
+    <h1 className="text-2xl font-bold">Voucher</h1>
+    <p>Fitur pembelian voucher akan ditampilkan di sini.</p>
+  </div>
+);
 
-  return (
-    <div className="h-screen flex items-center justify-center bg-gray-100">
-      <div className="bg-white p-6 rounded-lg shadow-md w-full max-w-sm">
-        <h2 className="text-2xl font-semibold mb-4 text-center">Login Admin</h2>
-        <input
-          type="email"
-          placeholder="Email"
-          className="w-full px-4 py-2 border mb-3 rounded"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          className="w-full px-4 py-2 border mb-4 rounded"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <button
-          onClick={handleLogin}
-          className="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600"
-        >
-          Login
-        </button>
-      </div>
-    </div>
-  );
-};
+const TokenPLN = () => (
+  <div className="p-6">
+    <h1 className="text-2xl font-bold">Token PLN</h1>
+    <p>Fitur pembelian token PLN akan ditampilkan di sini.</p>
+  </div>
+);
 
-function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [activeMenu, setActiveMenu] = useState("dashboard");
+const Kuota = () => (
+  <div className="p-6">
+    <h1 className="text-2xl font-bold">Kuota Internet</h1>
+    <p>Fitur pembelian kuota internet akan ditampilkan di sini.</p>
+  </div>
+);
 
-  if (!isLoggedIn) {
-    return <Login onLogin={setIsLoggedIn} />;
-  }
+const QRIS = () => (
+  <div className="p-6">
+    <h1 className="text-2xl font-bold">QRIS Merchant</h1>
+    <p>Fitur pembuatan QRIS akan ditampilkan di sini.</p>
+  </div>
+);
+
+const VirtualSIM = () => (
+  <div className="p-6">
+    <h1 className="text-2xl font-bold">Virtual SIM</h1>
+    <p>Fitur beli nomor kosong untuk WhatsApp akan ditampilkan di sini.</p>
+  </div>
+);
+
+const App = () => {
+  const [page, setPage] = useState("Dashboard");
 
   const renderPage = () => {
-    switch (activeMenu) {
-      case "dashboard":
+    switch (page) {
+      case "Dashboard":
         return <Dashboard />;
-      case "users":
+      case "Users":
         return <Users />;
-      case "transactions":
+      case "Transactions":
         return <Transactions />;
+      case "TopUpGame":
+        return <TopUpGame />;
+      case "Voucher":
+        return <Voucher />;
+      case "TokenPLN":
+        return <TokenPLN />;
+      case "Kuota":
+        return <Kuota />;
+      case "QRIS":
+        return <QRIS />;
+      case "VirtualSIM":
+        return <VirtualSIM />;
       default:
         return <Dashboard />;
     }
   };
 
   return (
-    <div className="flex h-screen">
-      <aside className="w-64 bg-gray-800 text-white flex flex-col">
-        <div className="p-4 text-xl font-bold border-b border-gray-700">
-          Dompetku Admin
-        </div>
-        <nav className="flex-1 p-4 space-y-2">
-          <button
-            onClick={() => setActiveMenu("dashboard")}
-            className="block w-full text-left hover:bg-gray-700 p-2 rounded"
-          >
-            Dashboard
-          </button>
-          <button
-            onClick={() => setActiveMenu("users")}
-            className="block w-full text-left hover:bg-gray-700 p-2 rounded"
-          >
-            Pengguna
-          </button>
-          <button
-            onClick={() => setActiveMenu("transactions")}
-            className="block w-full text-left hover:bg-gray-700 p-2 rounded"
-          >
-            Transaksi
-          </button>
-        </nav>
-        <div className="p-4 border-t border-gray-700">
-          <button
-            onClick={() => setIsLoggedIn(false)}
-            className="w-full bg-red-500 py-2 rounded hover:bg-red-600"
-          >
-            Logout
-          </button>
-        </div>
-      </aside>
-      <main className="flex-1 bg-gray-100 overflow-auto">{renderPage()}</main>
+    <div className="h-screen flex">
+      <div className="w-64 bg-gray-800 text-white p-4 space-y-4">
+        <h2 className="text-xl font-bold mb-4">Dompetku Admin</h2>
+        <ul className="space-y-2">
+          <li><button onClick={() => setPage("Dashboard")} className="hover:text-yellow-300">Dashboard</button></li>
+          <li><button onClick={() => setPage("Users")} className="hover:text-yellow-300">Pengguna</button></li>
+          <li><button onClick={() => setPage("Transactions")} className="hover:text-yellow-300">Transaksi</button></li>
+          <li><button onClick={() => setPage("TopUpGame")} className="hover:text-yellow-300">Top Up Game</button></li>
+          <li><button onClick={() => setPage("Voucher")} className="hover:text-yellow-300">Voucher</button></li>
+          <li><button onClick={() => setPage("TokenPLN")} className="hover:text-yellow-300">Token PLN</button></li>
+          <li><button onClick={() => setPage("Kuota")} className="hover:text-yellow-300">Kuota</button></li>
+          <li><button onClick={() => setPage("QRIS")} className="hover:text-yellow-300">QRIS Merchant</button></li>
+          <li><button onClick={() => setPage("VirtualSIM")} className="hover:text-yellow-300">Virtual SIM</button></li>
+        </ul>
+      </div>
+      <div className="flex-1 bg-gray-100">{renderPage()}</div>
     </div>
   );
-}
+};
 
-export default App;
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(<App />);
