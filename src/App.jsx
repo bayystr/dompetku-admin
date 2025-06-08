@@ -1,117 +1,56 @@
-import React, { useState } from "react";
-import ReactDOM from "react-dom/client";
+import React from "react";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+
+const Sidebar = () => (
+  <div className="w-64 h-screen bg-gray-900 text-white p-5">
+    <h1 className="text-2xl font-bold mb-8">Dompetku Admin</h1>
+    <ul className="space-y-4">
+      <li><Link to="/">Dashboard</Link></li>
+      <li><Link to="/pengguna">Pengguna</Link></li>
+      <li><Link to="/transaksi">Transaksi</Link></li>
+      <li><Link to="/topup-game">Top Up Game</Link></li>
+      <li><Link to="/voucher">Voucher</Link></li>
+      <li><Link to="/token-pln">Token PLN</Link></li>
+      <li><Link to="/kuota">Kuota</Link></li>
+      <li><Link to="/qris-merchant">QRIS Merchant</Link></li>
+      <li><Link to="/virtual-sim">Virtual SIM</Link></li>
+    </ul>
+  </div>
+);
 
 const Dashboard = () => (
-  <div className="p-6">
-    <h1 className="text-2xl font-bold">Dashboard</h1>
+  <div className="p-8">
+    <h2 className="text-2xl font-bold mb-4">Dashboard</h2>
     <p>Selamat datang di Dompetku Admin Panel.</p>
   </div>
 );
 
-const Users = () => (
-  <div className="p-6">
-    <h1 className="text-2xl font-bold">Daftar Pengguna</h1>
-    <p>Data pengguna akan ditampilkan di sini.</p>
+const Placeholder = ({ title }) => (
+  <div className="p-8">
+    <h2 className="text-2xl font-bold mb-4">{title}</h2>
+    <p>Halaman {title} akan ditampilkan di sini.</p>
   </div>
 );
 
-const Transactions = () => (
-  <div className="p-6">
-    <h1 className="text-2xl font-bold">Transaksi</h1>
-    <p>Semua data transaksi ditampilkan di sini.</p>
-  </div>
-);
-
-const TopUpGame = () => (
-  <div className="p-6">
-    <h1 className="text-2xl font-bold">Top Up Game</h1>
-    <p>Fitur top up game akan ditampilkan di sini.</p>
-  </div>
-);
-
-const Voucher = () => (
-  <div className="p-6">
-    <h1 className="text-2xl font-bold">Voucher</h1>
-    <p>Fitur pembelian voucher akan ditampilkan di sini.</p>
-  </div>
-);
-
-const TokenPLN = () => (
-  <div className="p-6">
-    <h1 className="text-2xl font-bold">Token PLN</h1>
-    <p>Fitur pembelian token PLN akan ditampilkan di sini.</p>
-  </div>
-);
-
-const Kuota = () => (
-  <div className="p-6">
-    <h1 className="text-2xl font-bold">Kuota Internet</h1>
-    <p>Fitur pembelian kuota internet akan ditampilkan di sini.</p>
-  </div>
-);
-
-const QRIS = () => (
-  <div className="p-6">
-    <h1 className="text-2xl font-bold">QRIS Merchant</h1>
-    <p>Fitur pembuatan QRIS akan ditampilkan di sini.</p>
-  </div>
-);
-
-const VirtualSIM = () => (
-  <div className="p-6">
-    <h1 className="text-2xl font-bold">Virtual SIM</h1>
-    <p>Fitur beli nomor kosong untuk WhatsApp akan ditampilkan di sini.</p>
-  </div>
-);
-
-const App = () => {
-  const [page, setPage] = useState("Dashboard");
-
-  const renderPage = () => {
-    switch (page) {
-      case "Dashboard":
-        return <Dashboard />;
-      case "Users":
-        return <Users />;
-      case "Transactions":
-        return <Transactions />;
-      case "TopUpGame":
-        return <TopUpGame />;
-      case "Voucher":
-        return <Voucher />;
-      case "TokenPLN":
-        return <TokenPLN />;
-      case "Kuota":
-        return <Kuota />;
-      case "QRIS":
-        return <QRIS />;
-      case "VirtualSIM":
-        return <VirtualSIM />;
-      default:
-        return <Dashboard />;
-    }
-  };
-
-  return (
-    <div className="h-screen flex">
-      <div className="w-64 bg-gray-800 text-white p-4 space-y-4">
-        <h2 className="text-xl font-bold mb-4">Dompetku Admin</h2>
-        <ul className="space-y-2">
-          <li><button onClick={() => setPage("Dashboard")} className="hover:text-yellow-300">Dashboard</button></li>
-          <li><button onClick={() => setPage("Users")} className="hover:text-yellow-300">Pengguna</button></li>
-          <li><button onClick={() => setPage("Transactions")} className="hover:text-yellow-300">Transaksi</button></li>
-          <li><button onClick={() => setPage("TopUpGame")} className="hover:text-yellow-300">Top Up Game</button></li>
-          <li><button onClick={() => setPage("Voucher")} className="hover:text-yellow-300">Voucher</button></li>
-          <li><button onClick={() => setPage("TokenPLN")} className="hover:text-yellow-300">Token PLN</button></li>
-          <li><button onClick={() => setPage("Kuota")} className="hover:text-yellow-300">Kuota</button></li>
-          <li><button onClick={() => setPage("QRIS")} className="hover:text-yellow-300">QRIS Merchant</button></li>
-          <li><button onClick={() => setPage("VirtualSIM")} className="hover:text-yellow-300">Virtual SIM</button></li>
-        </ul>
+const App = () => (
+  <Router>
+    <div className="flex">
+      <Sidebar />
+      <div className="flex-1 bg-gray-100 min-h-screen">
+        <Routes>
+          <Route path="/" element={<Dashboard />} />
+          <Route path="/pengguna" element={<Placeholder title="Pengguna" />} />
+          <Route path="/transaksi" element={<Placeholder title="Transaksi" />} />
+          <Route path="/topup-game" element={<Placeholder title="Top Up Game" />} />
+          <Route path="/voucher" element={<Placeholder title="Voucher" />} />
+          <Route path="/token-pln" element={<Placeholder title="Token PLN" />} />
+          <Route path="/kuota" element={<Placeholder title="Kuota" />} />
+          <Route path="/qris-merchant" element={<Placeholder title="QRIS Merchant" />} />
+          <Route path="/virtual-sim" element={<Placeholder title="Virtual SIM" />} />
+        </Routes>
       </div>
-      <div className="flex-1 bg-gray-100">{renderPage()}</div>
     </div>
-  );
-};
+  </Router>
+);
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<App />);
+export default App;
