@@ -1,3 +1,9 @@
-export default function App() {
-  return <h1>Dompetku Admin Panel</h1>
+function App() {
+  return (
+    <div className="text-center mt-10 text-2xl font-bold">
+      Selamat Datang di Dompetku Admin!
+    </div>
+  )
 }
+
+export default App
