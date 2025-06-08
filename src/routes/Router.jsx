@@ -1,49 +1,18 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Layout from "../components/Layout";
-import Dashboard from "../routes/pages/Dashboard";
-import Users from "../routes/pages/Users";
-import Transactions from "../routes/pages/Transactions";
-import Settings from "../routes/pages/Settings";
-import Login from "../routes/pages/Login";
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Dashboard from '../pages/Dashboard';
+import Login from '../pages/Login';
+import Users from '../pages/Users';
 
-export default function AppRouter() {
+const AppRouter = () => {
   return (
     <Router>
       <Routes>
+        <Route path="/" element={<Dashboard />} />
         <Route path="/login" element={<Login />} />
-        <Route
-          path="/"
-          element={
-            <Layout>
-              <Dashboard />
-            </Layout>
-          }
-        />
-        <Route
-          path="/users"
-          element={
-            <Layout>
-              <Users />
-            </Layout>
-          }
-        />
-        <Route
-          path="/transactions"
-          element={
-            <Layout>
-              <Transactions />
-            </Layout>
-          }
-        />
-        <Route
-          path="/settings"
-          element={
-            <Layout>
-              <Settings />
-            </Layout>
-          }
-        />
+        <Route path="/users" element={<Users />} />
       </Routes>
     </Router>
   );
-}
+};
+
+export default AppRouter;
